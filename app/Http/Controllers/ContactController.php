@@ -3,10 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
-use Illuminate\Http\Exceptions\HttpResponseException;
-use Illuminate\Contracts\Validation\Validator;
-use Illuminate\Validation\ValidationException;
 use App\Services\ContactService;
 
 class ContactController extends Controller
@@ -45,6 +41,8 @@ class ContactController extends Controller
             'email' => 'required|email|unique:contacts,email',
             'phone' => 'required|string|min:10|max:20',
         ]);
+
+        $data['phone'] = preg_replace('/\D/', '', $data['phone']);
 
         $updated = $this->contactService->update($id, $data);
 
