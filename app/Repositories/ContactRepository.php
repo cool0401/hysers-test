@@ -28,4 +28,9 @@ class ContactRepository
         $contact = Contact::findOrFail($id);
         $contact->delete();
     }
+
+    public function find(int $id)
+    {
+        return Contact::findOrFail($id);
+    }
 }

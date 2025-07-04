@@ -32,4 +32,9 @@ class ContactService
     {
         $this->contactRepository->delete($id);
     }
+
+    public function getById(int $id)
+    {
+        return $this->contactRepository->find($id);
+    }
 }
